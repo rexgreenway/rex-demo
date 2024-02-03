@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "rexdemo"
+version = "0.1.0"
+description = "API providing project demos."
+authors = ["Rex Greenway <rexgreenway@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+polylatlib = "^1.0.1"
+fastapi = "^0.101.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
