@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-polylatlib = "^1.0.1"
+polylatlib = "^1.0.2"
 fastapi = "^0.109.2"
 uvicorn = {extras = ["standard"], version = "^0.27.0.post1"}
 braidvisualiser = "^0.2.0"
