@@ -1,1 +1,1 @@
-from .polylatlib import pl_router  # noqa
+from .routes import pl_router  # noqa
