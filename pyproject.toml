@@ -11,6 +11,8 @@ polylatlib = "^1.0.2"
 fastapi = {extras = ["standard"], version = "^0.114.2"}
 braidvisualiser = "^0.2.0"
 mypy = "^1.8.0"
+google-cloud-storage = "^2.18.2"
+pillow = "^10.4.0"
 
 
 [build-system]
