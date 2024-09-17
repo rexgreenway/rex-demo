@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .polylatlib import pl_router
+from .software import bv_router, pl_router
 
 # Establish Core API
 app = FastAPI()
@@ -18,8 +18,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Register Sub-routers
+# SOFTWARE ROUTES
 app.include_router(pl_router)
+app.include_router(bv_router)
 
 
 @app.get("/")
