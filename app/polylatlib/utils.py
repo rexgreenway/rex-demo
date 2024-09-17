@@ -28,7 +28,7 @@ def build_regular_polygon(sides: int) -> tuple[str, pl.RegularPolygon]:
             name = "Octagon"
 
         case _:
-            polygon = pl.RegularPolygon(sides)
+            polygon = pl.RegularPolygon(sides, 1, (0, 0), 0)
             name = f"RegularPolygon_{sides}"
 
     return (
