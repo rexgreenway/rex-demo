@@ -36,7 +36,6 @@ class ContentRepository:
 
     @cached(cache=TTLCache(maxsize=1024, ttl=datetime.timedelta(minutes=TTL_MINUTES), timer=datetime.datetime.now))
     def get_album(self, album_name: str, size: Size = Size.SMALL) -> Album:
-        print("ALBUS: ", album_name)
         blobs: list[storage.Blob] = self.client.list_blobs(
             FILM_PHOTOGRAPHY_BUCKET, prefix=f"{album_name}/{size.value}/"
         )
@@ -66,7 +65,6 @@ class ContentRepository:
 
     @cached(cache=TTLCache(maxsize=1024, ttl=datetime.timedelta(minutes=TTL_MINUTES), timer=datetime.datetime.now))
     def get_image(self, album_name: str, image_name: str, size: Size = Size.LARGE) -> Image:
-        print("IMGUR: ", album_name, image_name)
         bucket = self.client.get_bucket(FILM_PHOTOGRAPHY_BUCKET)
         blob = bucket.get_blob(f"{album_name}/{size.value}/{image_name}")
         return Image(
