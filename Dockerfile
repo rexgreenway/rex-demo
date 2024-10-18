@@ -1,18 +1,28 @@
-FROM python:3.12
+FROM python:3.12 AS builder
 
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+# Maybe update to use pipx for this later
+RUN pip install poetry==1.8.4
 
-RUN curl -sSL https://install.python-poetry.org | python3 - 
-    
-ENV PATH="/root/.local/bin:$PATH"
-RUN poetry --version
+ENV POETRY_VIRTUALENVS_CREATE=1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=1 \
+    POETRY_CACHE_DIR=/tmp/poetry_cache
 
-WORKDIR /code
+WORKDIR /src
 
-COPY pyproject.toml README.md /code/
+# Install deps using poetry
+COPY pyproject.toml README.md /src/
+RUN poetry install --no-root && rm -rf $POETRY_CACHE_DIR
 
-RUN poetry install --no-root
 
-COPY ./app /code/app
+FROM python:3.12-slim AS runtime
 
-CMD ["poetry", "run", "fastapi", "run", "app/main.py", "--port", "8080"]
+WORKDIR /src
+
+# Copy over and set up venv
+ENV VIRTUAL_ENV=/src/.venv
+COPY --from=builder /src/.venv /src/.venv
+ENV PATH="/src/.venv/bin:$PATH"
+
+# Copy add and start API
+COPY ./app /src/app
+CMD ["fastapi", "run", "app/main.py", "--port", "8080"]
