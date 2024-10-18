@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -7,8 +9,11 @@ from .software import bv_router, pl_router
 # Establish Core API
 app = FastAPI()
 
+# Establish Logger
+logger = logging.getLogger(__name__)
+
 origins = [
-    "http://localhost",
+    "http://127.0.0.1:5173",
     "https://rexgreenway.github.io/",
 ]
 
@@ -25,6 +30,8 @@ app.include_router(bv_router)
 
 # PORTFOLIO ROUTES
 app.include_router(photography_router)
+
+print("RUNNING API!!!")
 
 
 @app.get("/")

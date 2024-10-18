@@ -1,14 +1,17 @@
 from fastapi import APIRouter
 
-from .utils import download_blob_into_memory, list_blobs
+from ..content_repository import ContentRepository
 
 photography_router = APIRouter()
 
+content_repo = ContentRepository()
 
-@photography_router.get("/photography")
-async def photography():
-    blobs = list_blobs()
 
-    download_blob_into_memory()
+@photography_router.get("/photography/{album}")
+async def get_album(album: str):
+    return content_repo.get_album(album)
 
-    return {"message": "Photography...", "blobs": blobs}
+
+@photography_router.get("/photography/{album}/{image}")
+async def get_photograph(album: str, image: str):
+    return content_repo.get_image(album, image)
