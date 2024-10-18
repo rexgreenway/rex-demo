@@ -1,5 +1,3 @@
-import logging
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -8,8 +6,6 @@ from .portfolio import photography_router
 # Establish Core API
 app = FastAPI()
 
-# Establish Logger
-logger = logging.getLogger(__name__)
 
 origins = [
     "http://127.0.0.1:5173",

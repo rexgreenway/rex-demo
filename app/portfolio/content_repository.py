@@ -6,7 +6,6 @@ from google.cloud import storage
 from pydantic import BaseModel
 
 FILM_PHOTOGRAPHY_BUCKET = "rex-photography-portfolio"
-# FILM_PHOTOGRAPHY_BUCKET = "rex-test-1"
 
 TTL_MINUTES = 60
 
