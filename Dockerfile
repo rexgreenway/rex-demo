@@ -15,6 +15,4 @@ RUN poetry install --no-root
 
 COPY ./app /code/app
 
-CMD ["poetry", "run", "fastapi", "run", "--port", "80"]
-
-# CMD ["poetry", "run", "fastapi", "run", "app/main.py", "--port", "8080"]
+CMD ["poetry", "run", "fastapi", "run", "app/main.py", "--port", "8080"]
